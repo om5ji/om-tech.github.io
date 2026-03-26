@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,46 +10,106 @@
 
     <nav class="p-6 flex justify-between items-center border-b border-gray-800">
         <h1 class="text-2xl font-bold text-blue-500">OmTech<span class="text-white">Global</span></h1>
-        <div class="hidden md:block space-x-6 text-gray-300">
-            <span>OS Errors</span> • <span>Performance</span> • <span>Linux Expert</span>
+        
+        <div class="flex items-center space-x-6">
+            <div class="hidden md:block space-x-6 text-gray-300">
+                <span id="nav1">OS Errors</span> • <span id="nav2">Performance</span> • <span id="nav3">Linux Expert</span>
+            </div>
+            <button onclick="toggleLanguage()" id="langBtn" class="border border-blue-500 text-blue-400 px-3 py-1 rounded hover:bg-blue-500 hover:text-white transition font-bold">
+                हिंदी
+            </button>
         </div>
     </nav>
 
     <header class="py-16 text-center px-4">
-        <h2 class="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+        <h2 id="heroTitle" class="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
             Global Tech Support from Ballia
         </h2>
-        <p class="text-lg text-gray-400 max-w-2xl mx-auto">
-            Windows BSOD, Linux Boot Loop, या Slow PC? मैं दुनिया के किसी भी कोने से आपका डिवाइस ठीक कर सकता हूँ।
+        <p id="heroSub" class="text-lg text-gray-400 max-w-2xl mx-auto">
+            Windows BSOD, Linux Boot Loop, or a Slow PC? I can fix your device remotely from anywhere in the world.
         </p>
     </header>
 
     <section class="pb-16 px-6">
         <div class="max-w-md mx-auto bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-700">
-            <h3 class="text-xl font-bold mb-6 text-center text-blue-400">अपनी समस्या यहाँ विस्तार से लिखें</h3>
-            <textarea id="issue" rows="4" placeholder="उदाहरण: My Linux Mint is not booting after update..." 
+            <h3 id="formTitle" class="text-xl font-bold mb-6 text-center text-blue-400">Describe your issue in detail</h3>
+            
+            <textarea id="issue" rows="4" placeholder="Example: My Linux Mint is not booting after update..." 
                 class="w-full p-4 mb-6 bg-gray-900 rounded-xl text-white border border-gray-700 outline-none focus:ring-2 focus:ring-blue-500 transition"></textarea>
             
-            <button onclick="sendToWA()" class="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold text-lg transition-all transform hover:scale-105 shadow-lg">
-                WhatsApp पर मैसेज भेजें
+            <button onclick="sendToWA()" id="waBtn" class="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold text-lg transition-all transform hover:scale-105 shadow-lg">
+                Send Message on WhatsApp
             </button>
         </div>
     </section>
 
     <footer class="py-10 text-center text-gray-600 border-t border-gray-800">
-        <p>© 2026 OmTech Global | Solution for every Software Problem</p>
+        <p id="footerText">© 2026 OmTech Global | Solution for every Software Problem</p>
     </footer>
 
     <script>
+    // Translations Dictionary
+    const translations = {
+        en: {
+            nav1: "OS Errors",
+            nav2: "Performance",
+            nav3: "Linux Expert",
+            heroTitle: "Global Tech Support from Ballia",
+            heroSub: "Windows BSOD, Linux Boot Loop, or a Slow PC? I can fix your device remotely from anywhere in the world.",
+            formTitle: "Describe your issue in detail",
+            formPlaceholder: "Example: My Linux Mint is not booting after update...",
+            waBtn: "Send Message on WhatsApp",
+            footerText: "© 2026 OmTech Global | Solution for every Software Problem",
+            langBtn: "हिंदी"
+        },
+        hi: {
+            nav1: "OS एरर्स",
+            nav2: "परफॉर्मेंस",
+            nav3: "लिनक्स एक्सपर्ट",
+            heroTitle: "बलिया से ग्लोबल टेक सपोर्ट",
+            heroSub: "Windows BSOD, Linux Boot Loop, या Slow PC? मैं दुनिया के किसी भी कोने से आपका डिवाइस रिमोटली ठीक कर सकता हूँ।",
+            formTitle: "अपनी समस्या यहाँ विस्तार से लिखें",
+            formPlaceholder: "उदाहरण: My Linux Mint update के बाद boot नहीं हो रहा है...",
+            waBtn: "WhatsApp पर मैसेज भेजें",
+            footerText: "© 2026 OmTech Global | हर सॉफ्टवेयर समस्या का समाधान",
+            langBtn: "English"
+        }
+    };
+
+    let currentLang = 'en';
+
+    function toggleLanguage() {
+        // Toggle language state
+        currentLang = currentLang === 'en' ? 'hi' : 'en';
+        
+        // Update DOM elements
+        document.getElementById('nav1').innerText = translations[currentLang].nav1;
+        document.getElementById('nav2').innerText = translations[currentLang].nav2;
+        document.getElementById('nav3').innerText = translations[currentLang].nav3;
+        document.getElementById('heroTitle').innerText = translations[currentLang].heroTitle;
+        document.getElementById('heroSub').innerText = translations[currentLang].heroSub;
+        document.getElementById('formTitle').innerText = translations[currentLang].formTitle;
+        document.getElementById('issue').placeholder = translations[currentLang].formPlaceholder;
+        document.getElementById('waBtn').innerText = translations[currentLang].waBtn;
+        document.getElementById('footerText').innerText = translations[currentLang].footerText;
+        document.getElementById('langBtn').innerText = translations[currentLang].langBtn;
+    }
+
     function sendToWA() {
         let issue = document.getElementById('issue').value;
         if(issue.trim() === "") {
-            alert("कृपया पहले अपनी समस्या लिखें!");
+            let alertMsg = currentLang === 'en' ? "Please describe your issue first!" : "कृपया पहले अपनी समस्या लिखें!";
+            alert(alertMsg);
             return;
         }
+        
         // यहाँ YOUR_NUMBER की जगह अपना मोबाइल नंबर डालें (जैसे: 919876543210)
         let myNumber = "918112665753"; 
-        let url = "https://wa.me/" + myNumber + "?text=" + encodeURIComponent("Hi Om, I saw your website. I need help with: " + issue);
+        let defaultText = currentLang === 'en' ? 
+            "Hi Om, I saw your website. I need help with: " : 
+            "नमस्ते ओम, मैंने आपकी वेबसाइट देखी। मुझे इस समस्या में मदद चाहिए: ";
+            
+        let url = "https://wa.me/" + myNumber + "?text=" + encodeURIComponent(defaultText + issue);
         window.open(url, '_blank');
     }
     </script>
