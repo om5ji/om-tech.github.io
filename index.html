@@ -35,7 +35,7 @@
 
     <section class="pb-24 px-6 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 bg-gray-800/60 p-8 rounded-2xl border border-gray-700 backdrop-blur-md relative z-10">
         <div class="md:w-1/3 flex-shrink-0">
-            <img src="Gemini_Generated_Image_sfd2pesfd2pesfd2.jpg" alt="Om Tech Global Founder" class="rounded-2xl shadow-2xl border-4 border-blue-500 object-cover w-64 h-64 md:w-full md:h-auto mx-auto">
+            <img src="expert.jpg" alt="Om Tech Global Founder" class="rounded-2xl shadow-2xl border-4 border-blue-500 object-cover w-64 h-64 md:w-full md:h-auto mx-auto">
         </div>
         <div class="md:w-2/3 space-y-4 text-center md:text-left">
             <h3 id="expertTitle" class="text-3xl font-bold text-blue-400">Meet Your Expert</h3>
@@ -120,7 +120,7 @@
             alert(currentLang === 'en' ? "Please describe your issue first!" : "कृपया पहले अपनी समस्या लिखें!");
             return;
         }
-        let myNumber = "918112665753"; 
+        let myNumber = "918112665753"; // आपका नंबर सेट है!
         let defaultText = currentLang === 'en' ? "Hi Om, I found your website. I need help with: " : "नमस्ते ओम, मैंने आपकी वेबसाइट देखी। मुझे इस समस्या में मदद चाहिए: ";
         let url = "https://wa.me/" + myNumber + "?text=" + encodeURIComponent(defaultText + issue);
         window.open(url, '_blank');
