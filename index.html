@@ -8,7 +8,7 @@
 </head>
 <body class="bg-gray-900 text-white font-sans relative overflow-x-hidden">
 
-    <div class="fixed inset-0 -z-10 h-full w-full bg-cover bg-center opacity-20 blur-sm" style="background-image: url('GettyImages-2184271924-RIG-700x525.jpg');"></div>
+    <div class="fixed inset-0 -z-10 h-full w-full bg-cover bg-center opacity-15" style="background-image: url('GettyImages-2184271924-RIG-700x525.jpg');"></div>
     <div class="fixed inset-0 -z-10 h-full w-full bg-gray-900/80"></div>
     
     <nav class="p-6 flex justify-between items-center border-b border-gray-800 bg-gray-950/90 backdrop-blur-sm fixed top-0 w-full z-50">
@@ -72,7 +72,7 @@
             heroTitle: "Global Tech Support from Ballia",
             heroSub: "Windows BSOD, Linux Boot Loop, or a Slow PC? I can fix your device remotely from anywhere in the world.",
             expertTitle: "Meet Your Expert",
-            expertDesc: "I am Om Prakash Gupta, your dedicated remote technician from Ballia, India. Specializing in advanced OS diagnostics, Linux Mint optimization, and global software support. My goal is to ensure your device runs seamlessly, saving you time and money.",
+            expertDesc: "I am Om Gupta, your dedicated remote technician from Ballia, India. Specializing in advanced OS diagnostics, Linux Mint optimization, and global software support. My goal is to ensure your device runs seamlessly, saving you time and money.",
             expertSlogan: "OmTech Global: Every Software Problem has a Solution.",
             formTitle: "Describe your issue in detail",
             formPlaceholder: "Example: My Linux Mint is not booting after update...",
@@ -85,7 +85,7 @@
             heroTitle: "बलिया से ग्लोबल टेक सपोर्ट",
             heroSub: "Windows BSOD, Linux Boot Loop, या Slow PC? मैं दुनिया के किसी भी कोने से आपका डिवाइस रिमोटली ठीक कर सकता हूँ।",
             expertTitle: "अपने एक्सपर्ट से मिलें",
-            expertDesc: "मैं ओम प्रकाश गुप्ता हूँ, बलिया, भारत से आपका समर्पित रिमोट टेकनिशियन। मैं एडवांस OS डायग्नोस्टिक्स, लिनक्स मिंट ऑप्टिमाइज़ेशन, और ग्लोबल सॉफ्टवेयर सपोर्ट में एक्सपर्ट हूँ। मेरा लक्ष्य यह सुनिश्चित करना है कि आपका डिवाइस निर्बाध रूप से चले, जिससे आपका समय और पैसा बचे।",
+            expertDesc: "मैं ओम गुप्ता हूँ, बलिया, भारत से आपका समर्पित रिमोट टेकनिशियन। मैं एडवांस OS डायग्नोस्टिक्स, लिनक्स मिंट ऑप्टिमाइज़ेशन, और ग्लोबल सॉफ्टवेयर सपोर्ट में एक्सपर्ट हूँ। मेरा लक्ष्य यह सुनिश्चित करना है कि आपका डिवाइस निर्बाध रूप से चले, जिससे आपका समय और पैसा बचे।",
             expertSlogan: "ओमटेक ग्लोबल: हर सॉफ्टवेयर समस्या का समाधान।",
             formTitle: "अपनी समस्या यहाँ विस्तार से लिखें",
             formPlaceholder: "उदाहरण: My Linux Mint update के बाद boot नहीं हो रहा है...",
@@ -120,7 +120,7 @@
             alert(currentLang === 'en' ? "Please describe your issue first!" : "कृपया पहले अपनी समस्या लिखें!");
             return;
         }
-        let myNumber = "918112665753"; // आपका नंबर सेट है!
+        let myNumber = "918112665753"; // आपका नंबर
         let defaultText = currentLang === 'en' ? "Hi Om, I found your website. I need help with: " : "नमस्ते ओम, मैंने आपकी वेबसाइट देखी। मुझे इस समस्या में मदद चाहिए: ";
         let url = "https://wa.me/" + myNumber + "?text=" + encodeURIComponent(defaultText + issue);
         window.open(url, '_blank');
