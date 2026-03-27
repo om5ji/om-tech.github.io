@@ -124,4 +124,152 @@
             langBtn: "हिंदी"
         },
         hi: {
-            nav1: "OS एरर्स", nav2: "परफॉर्मेंस", nav
+            nav1: "OS एरर्स", nav2: "परफॉर्मेंस", nav3: "लिनक्स एक्सपर्ट",
+            heroTitle: "बलिया से ग्लोबल टेक सपोर्ट",
+            heroSub: "Windows BSOD, Linux Boot Loop, या Slow PC? मैं दुनिया के किसी भी कोने से आपका डिवाइस रिमोटली ठीक कर सकता हूँ।",
+            expertTitle: "अपने एक्सपर्ट से मिलें",
+            expertDesc: "मैं ओम गुप्ता हूँ, बलिया, भारत से आपका समर्पित रिमोट टेकनिशियन। मैं एडवांस OS डायग्नोस्टिक्स, लिनक्स मिंट ऑप्टिमाइज़ेशन, और ग्लोबल सॉफ्टवेयर सपोर्ट में एक्सपर्ट हूँ। मेरा लक्ष्य यह सुनिश्चित करना है कि आपका डिवाइस निर्बाध रूप से चले, जिससे आपका समय और पैसा बचे।",
+            expertSlogan: "ओमटेक ग्लोबल: हर सॉफ्टवेयर समस्या का समाधान।",
+            reviewSectionTitle: "आपका फीडबैक महत्वपूर्ण है",
+            reviewSectionSub: "हमारी सर्विस को और बेहतर बनाने में मदद करें। अपने सुझाव या रिव्यू सीधे WhatsApp पर भेजें।",
+            feedbackBtnText: "अपना रिव्यू या सुझाव दें",
+            formTitle: "अपनी समस्या यहाँ विस्तार से लिखें",
+            formPlaceholder: "उदाहरण: My Linux Mint update के बाद boot नहीं हो रहा है...",
+            waBtn: "WhatsApp पर मैसेज भेजें",
+            commentsTitle: "ग्राहकों के रिव्यु और कमेंट्स",
+            footerText: "© 2026 OmTech Global | हर सॉफ्टवेयर समस्या का समाधान",
+            langBtn: "English"
+        }
+    };
+
+    let currentLang = 'en';
+
+    function toggleLanguage() {
+        currentLang = currentLang === 'en' ? 'hi' : 'en';
+        document.getElementById('nav1').innerText = translations[currentLang].nav1;
+        document.getElementById('nav2').innerText = translations[currentLang].nav2;
+        document.getElementById('nav3').innerText = translations[currentLang].nav3;
+        document.getElementById('heroTitle').innerText = translations[currentLang].heroTitle;
+        document.getElementById('heroSub').innerText = translations[currentLang].heroSub;
+        document.getElementById('expertTitle').innerText = translations[currentLang].expertTitle;
+        document.getElementById('expertDesc').innerText = translations[currentLang].expertDesc;
+        document.getElementById('expertSlogan').innerText = translations[currentLang].expertSlogan;
+        document.getElementById('reviewSectionTitle').innerText = translations[currentLang].reviewSectionTitle;
+        document.getElementById('reviewSectionSub').innerText = translations[currentLang].reviewSectionSub;
+        document.getElementById('feedbackBtnText').innerText = translations[currentLang].feedbackBtnText;
+        document.getElementById('formTitle').innerText = translations[currentLang].formTitle;
+        document.getElementById('issue').placeholder = translations[currentLang].formPlaceholder;
+        document.getElementById('waText').innerText = translations[currentLang].waBtn;
+        document.getElementById('commentsTitle').innerText = translations[currentLang].commentsTitle;
+        document.getElementById('footerText').innerText = translations[currentLang].footerText;
+        document.getElementById('langBtn').innerText = translations[currentLang].langBtn;
+    }
+
+    function sendToWA() {
+        let issue = document.getElementById('issue').value;
+        if(issue.trim() === "") {
+            alert(currentLang === 'en' ? "Please describe your issue first!" : "कृपया पहले अपनी समस्या लिखें!");
+            return;
+        }
+        let myNumber = "918112665753"; 
+        let defaultText = currentLang === 'en' ? "Hi Om, I found your website. I need help with: " : "नमस्ते ओम, मैंने आपकी वेबसाइट देखी। मुझे इस समस्या में मदद चाहिए: ";
+        let url = "https://wa.me/" + myNumber + "?text=" + encodeURIComponent(defaultText + issue);
+        window.open(url, '_blank');
+    }
+
+    function sendFeedbackWA() {
+        let myNumber = "918112665753"; 
+        let defaultText = currentLang === 'en' ? "Hi Om, I visited your website and would like to give some feedback/review: " : "नमस्ते ओम, मैंने आपकी वेबसाइट देखी और मैं एक फीडबैक/सलाह देना चाहता हूँ: ";
+        let url = "https://wa.me/" + myNumber + "?text=" + encodeURIComponent(defaultText);
+        window.open(url, '_blank');
+    }
+
+    // आपका डिप्लॉय किया गया असली URL
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzv4aac8cv2uFotuV9aY9YVebkIpVQqc1fTpy8Heoi7EGVNr5-DONxgoQouMrK8SNDF-Q/exec'; 
+
+    // 1. शीट से कमेंट्स मंगाना
+    function loadComments() {
+        fetch(SCRIPT_URL)
+            .then(response => response.text())
+            .then(text => {
+                const list = document.getElementById('commentsList');
+                try {
+                    const data = JSON.parse(text);
+                    list.innerHTML = '';
+                    
+                    if(data.length === 0) {
+                        list.innerHTML = '<p class="text-gray-400 text-center">No comments yet. Be the first to review!</p>';
+                        return;
+                    }
+
+                    data.reverse().forEach(item => {
+                        // अगर खाली कमेंट आ जाए तो उसे छुपा दें
+                        if(!item.name || !item.comment) return; 
+
+                        let dateObj = new Date(item.time);
+                        let dateString = dateObj.toLocaleDateString();
+                        
+                        let commentHTML = `
+                            <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                                <div class="flex justify-between items-center mb-2">
+                                    <strong class="text-blue-400">${item.name}</strong>
+                                    <span class="text-xs text-gray-400">${dateString}</span>
+                                </div>
+                                <p class="text-gray-200">${item.comment}</p>
+                            </div>
+                        `;
+                        list.innerHTML += commentHTML;
+                    });
+                } catch(e) {
+                    list.innerHTML = '<p class="text-red-400 text-center">Error reading data. Please try again later.</p>';
+                }
+            })
+            .catch(error => {
+                document.getElementById('commentsList').innerHTML = '<p class="text-red-400 text-center">Connection Error.</p>';
+            });
+    }
+
+    // 2. शीट में नया कमेंट भेजना
+    document.getElementById('commentForm').addEventListener('submit', function(e) {
+        e.preventDefault(); 
+        
+        let btn = document.getElementById('submitBtn');
+        let status = document.getElementById('statusMsg');
+        let form = this;
+        
+        btn.innerText = "Posting...";
+        btn.disabled = true;
+
+        // FIX: Google Sheets को समझने के लिए FormData को URLSearchParams में बदला गया
+        let formData = new FormData(form);
+        let params = new URLSearchParams(formData);
+
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            body: params
+        })
+        .then(response => {
+            status.innerText = "Comment posted successfully!";
+            status.className = "text-sm mt-2 text-green-400 block";
+            form.reset(); 
+            btn.innerText = "Post Comment";
+            btn.disabled = false;
+            
+            // डेटाबेस में सेव होने के लिए 1.5 सेकंड रुक कर नया डेटा मंगाएं
+            setTimeout(loadComments, 1500); 
+            setTimeout(() => status.classList.add('hidden'), 4000); 
+        })
+        .catch(error => {
+            status.innerText = "Error posting comment. Try again.";
+            status.className = "text-sm mt-2 text-red-400 block";
+            btn.innerText = "Post Comment";
+            btn.disabled = false;
+        });
+    });
+
+    // पेज लोड होते ही कमेंट्स मंगा लें
+    window.onload = loadComments;
+
+    </script>
+</body>
+</html>
